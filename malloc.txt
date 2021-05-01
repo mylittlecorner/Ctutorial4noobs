@@ -1,0 +1,248 @@
+ 
+Search: [                    ] [Go]
+  • Reference
+  • <cstdlib>
+  • malloc
+
+function
+<cstdlib>
+
+malloc
+
+void* malloc (size_t size);
+
+Allocate memory block
+Allocates a block of size bytes of memory, returning a pointer to the beginning of the block.
+
+The content of the newly allocated block of memory is not initialized, remaining with indeterminate values.
+
+If size is zero, the return value depends on the particular library implementation (it may or may not be a null pointer), but the returned pointer shall not be dereferenced.
+
+
+Parameters
+
+size
+    Size of the memory block, in bytes.
+    size_t is an unsigned integral type.
+
+
+Return Value
+
+On success, a pointer to the memory block allocated by the function.
+The type of this pointer is always void*, which can be cast to the desired type of data pointer in order to be dereferenceable.
+If the function failed to allocate the requested block of memory, a null pointer is returned.
+
+
+Example
+
+1  /* malloc example: random string generator*/
+2  #include <stdio.h>      /* printf, scanf, NULL */
+3  #include <stdlib.h>     /* malloc, free, rand */
+4
+5  int main ()
+6  {
+7    int i,n;
+8    char * buffer;
+9
+10   printf ("How long do you want the string? ");
+11   scanf ("%d", &i);
+12
+13   buffer = (char*) malloc (i+1);
+14   if (buffer==NULL) exit (1);
+15
+16   for (n=0; n<i; n++)
+17     buffer[n]=rand()%26+'a';
+18   buffer[i]='\0';
+19
+20   printf ("Random string: %s\n",buffer);
+21   free (buffer);
+22
+23   return 0;
+24 }
+
+
+
+This program generates a string of the length specified by the user and fills it with alphabetic characters. The possible length of this string is only limited by the amount of memory available to malloc
+
+
+Data races
+
+Only the storage referenced by the returned pointer is modified. No other storage locations are accessed by the call.
+If the function reuses the same unit of storage released by a deallocation function (such as free or realloc), the functions are synchronized in such a way that the deallocation happens entirely before the next allocation.
+
+
+Exceptions (C++)
+
+No-throw guarantee: this function never throws exceptions.
+
+
+See also
+
+free
+    Deallocate memory block (function )
+
+calloc
+    Allocate and zero-initialize array (function )
+
+realloc
+    Reallocate memory block (function )
+
+C++
+
+  • Information
+  • Tutorials
+  • Reference
+  • Articles
+  • Forum
+
+Reference
+
+  • C library:
+
+      □ <cassert> (assert.h)
+      □ <cctype> (ctype.h)
+      □ <cerrno> (errno.h)
+      □ <cfenv> (fenv.h)
+      □ <cfloat> (float.h)
+      □ <cinttypes> (inttypes.h)
+      □ <ciso646> (iso646.h)
+      □ <climits> (limits.h)
+      □ <clocale> (locale.h)
+      □ <cmath> (math.h)
+      □ <csetjmp> (setjmp.h)
+      □ <csignal> (signal.h)
+      □ <cstdarg> (stdarg.h)
+      □ <cstdbool> (stdbool.h)
+      □ <cstddef> (stddef.h)
+      □ <cstdint> (stdint.h)
+      □ <cstdio> (stdio.h)
+      □ <cstdlib> (stdlib.h)
+      □ <cstring> (string.h)
+      □ <ctgmath> (tgmath.h)
+      □ <ctime> (time.h)
+      □ <cuchar> (uchar.h)
+      □ <cwchar> (wchar.h)
+      □ <cwctype> (wctype.h)
+  • Containers:
+
+      □ <array>
+      □ <deque>
+      □ <forward_list>
+      □ <list>
+      □ <map>
+      □ <queue>
+      □ <set>
+      □ <stack>
+      □ <unordered_map>
+      □ <unordered_set>
+      □ <vector>
+  • Input/Output:
+
+      □ <fstream>
+      □ <iomanip>
+      □ <ios>
+      □ <iosfwd>
+      □ <iostream>
+      □ <istream>
+      □ <ostream>
+      □ <sstream>
+      □ <streambuf>
+  • Multi-threading:
+
+      □ <atomic>
+      □ <condition_variable>
+      □ <future>
+      □ <mutex>
+      □ <thread>
+  • Other:
+
+      □ <algorithm>
+      □ <bitset>
+      □ <chrono>
+      □ <codecvt>
+      □ <complex>
+      □ <exception>
+      □ <functional>
+      □ <initializer_list>
+      □ <iterator>
+      □ <limits>
+      □ <locale>
+      □ <memory>
+      □ <new>
+      □ <numeric>
+      □ <random>
+      □ <ratio>
+      □ <regex>
+      □ <stdexcept>
+      □ <string>
+      □ <system_error>
+      □ <tuple>
+      □ <typeindex>
+      □ <typeinfo>
+      □ <type_traits>
+      □ <utility>
+      □ <valarray>
+
+<cstdlib> (stdlib.h)
+
+  • functions:
+
+      □ abort
+      □ abs
+      □ atexit
+      □ atof
+      □ atoi
+      □ atol
+      □ atoll
+      □ at_quick_exit
+      □ bsearch
+      □ calloc
+      □ div
+      □ exit
+      □ free
+      □ getenv
+      □ labs
+      □ ldiv
+      □ llabs
+      □ lldiv
+      □ malloc
+      □ mblen
+      □ mbstowcs
+      □ mbtowc
+      □ qsort
+      □ quick_exit
+      □ rand
+      □ realloc
+      □ srand
+      □ strtod
+      □ strtof
+      □ strtol
+      □ strtold
+      □ strtoll
+      □ strtoul
+      □ strtoull
+      □ system
+      □ wcstombs
+      □ wctomb
+      □ _Exit
+  • functions (non-standard):
+
+      □ itoa
+  • types:
+
+      □ div_t
+      □ ldiv_t
+      □ lldiv_t
+      □ size_t
+  • macro constants:
+
+      □ EXIT_FAILURE
+      □ EXIT_SUCCESS
+      □ MB_CUR_MAX
+      □ NULL
+      □ RAND_MAX
+
+[INS::INS]
+Home page | Privacy policy
+© cplusplus.com, 2000-2020 - All rights reserved - v3.2
+Spotted an error? contact us
